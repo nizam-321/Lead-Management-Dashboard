@@ -20,7 +20,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="h-screen flex items-center justify-center bg-slate-50 text-slate-900">
+    <div className="h-screen flex items-center justify-center bg-white">
       <Card className="w-[350px]">
         <CardHeader><CardTitle className="text-center">CRM Login</CardTitle></CardHeader>
         <CardContent>
@@ -32,7 +32,7 @@ export default function LoginPage() {
               value={password} 
               onChange={(e) => setPassword(e.target.value)} 
             />
-            <Button type="submit" className="w-full">Login</Button>
+            <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">Login</Button>
           </form>
         </CardContent>
       </Card>
