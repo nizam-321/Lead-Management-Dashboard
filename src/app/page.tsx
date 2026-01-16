@@ -26,11 +26,10 @@ export default function DashboardPage() {
     router.push("/login");
   };
 
-  if (loading) return null; // Page flash hone se rokne ke liye
+  if (loading) return null; 
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Top Header with User Info & Logout */}
       <header className="bg-white border-b mb-8">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <h1 className="text-xl font-bold text-slate-800">Sales Dashboard</h1>

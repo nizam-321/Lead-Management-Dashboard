@@ -21,7 +21,7 @@ export default function LoginPage() {
 
   return (
     <div className="h-screen flex items-center justify-center bg-white">
-      <Card className="w-[350px]">
+      <Card className="w-87.5">
         <CardHeader><CardTitle className="text-center">CRM Login</CardTitle></CardHeader>
         <CardContent>
           <form onSubmit={handleLogin} className="space-y-4">

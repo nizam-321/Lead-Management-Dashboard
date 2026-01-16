@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, DollarSign, Target, Loader2, TrendingUp, TrendingDown } from "lucide-react";
+import { Users, IndianRupee, Target, Loader2, TrendingUp, TrendingDown } from "lucide-react";
 
 export default function StatsCards() {
   const [stats, setStats] = useState<any>(null);
@@ -44,10 +44,10 @@ export default function StatsCards() {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between pb-2">
           <CardTitle className="text-sm font-medium">Pipeline Value</CardTitle>
-          <DollarSign className="w-4 h-4 text-muted-foreground" />
+          <IndianRupee className="w-4 h-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">${stats.totalValue.toLocaleString()}</div>
+          <div className="text-2xl font-bold">₹{stats.totalValue.toLocaleString('en-IN')}</div>
           <p className="text-xs text-muted-foreground mt-1">Estimated revenue</p>
         </CardContent>
       </Card>
