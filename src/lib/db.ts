@@ -3,8 +3,7 @@ import mongoose from 'mongoose';
 const MONGODB_URI = process.env.MONGODB_URI!;
 
 if (!MONGODB_URI) throw new Error('Please define MONGODB_URI');
-
-let cached = (global as any).mongoose || { conn: null, promise: null };
+const  cached = (global as any).mongoose || { conn: null, promise: null };
 
 export default async function dbConnect() {
   if (cached.conn) return cached.conn;
