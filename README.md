@@ -30,6 +30,7 @@ Run the Application:
 
 Bash
 npm run dev
+ 
  Seeding Method
 To populate the dashboard with 500+ dummy leads for testing, run the custom seeding script:
 
@@ -52,3 +53,4 @@ Styling: Tailwind CSS & Shadcn UI
 Database: MongoDB with Mongoose
 
 Charts: Recharts
+
