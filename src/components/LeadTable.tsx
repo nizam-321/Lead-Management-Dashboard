@@ -20,6 +20,12 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, Search } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 export default function LeadTable() {
   const [mounted, setMounted] = useState(false);
@@ -30,6 +36,8 @@ export default function LeadTable() {
   const [source, setSource] = useState("All");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [selectedLead, setSelectedLead] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -141,26 +149,31 @@ export default function LeadTable() {
                 </TableCell>
               </TableRow>
             ) : (
-              leads.map((lead: any) => (
-                <TableRow key={lead._id}>
+              leads.map((item: any) => (
+                <TableRow 
+                  key={item._id} 
+                  className="cursor-pointer hover:bg-slate-50 transition-colors"
+                  onClick={() => {
+                    setSelectedLead(item);
+                    setIsModalOpen(true);
+                  }}
+                >
                   <TableCell className="font-medium">
                     <div>
-                      <p>{lead.name}</p>
-                      <p className="text-xs text-muted-foreground">{lead.email}</p>
+                      <p>{item.name}</p>
+                      <p className="text-xs text-muted-foreground">{item.email}</p>
                     </div>
                   </TableCell>
-                  <TableCell>{lead.company}</TableCell>
+                  <TableCell>{item.company}</TableCell>
                   <TableCell>
-                    <Badge variant={lead.stage === 'Closed Won' ? 'default' : 'secondary'}>
-                      {lead.stage}
+                    <Badge variant={item.stage === 'Closed Won' ? 'default' : 'secondary'}>
+                      {item.stage}
                     </Badge>
                   </TableCell>
-                  <TableCell>
-                    <span className="text-sm">{lead.source}</span>
-                  </TableCell>
-                  <TableCell className="font-medium">${lead.value?.toLocaleString()}</TableCell>
+                  <TableCell>{item.source}</TableCell>
+                  <TableCell className="font-medium">${item.value?.toLocaleString()}</TableCell>
                   <TableCell className="text-sm text-muted-foreground">
-                    {new Date(lead.createdAt).toLocaleDateString()}
+                    {new Date(item.createdAt).toLocaleDateString()}
                   </TableCell>
                 </TableRow>
               ))
@@ -192,6 +205,30 @@ export default function LeadTable() {
           </Button>
         </div>
       </div>
+
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold">{selectedLead?.name}</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 mt-4">
+            <div className="grid grid-cols-2 gap-4 text-sm text-slate-900">
+              <div><p className="text-muted-foreground font-normal">Email</p><p className="font-medium truncate">{selectedLead?.email}</p></div>
+              <div><p className="text-muted-foreground font-normal">Phone</p><p className="font-medium">{selectedLead?.phone || 'N/A'}</p></div>
+              <div><p className="text-muted-foreground font-normal">Company</p><p className="font-medium">{selectedLead?.company}</p></div>
+              <div><p className="text-muted-foreground font-normal">Source</p><p className="font-medium">{selectedLead?.source}</p></div>
+              <div><p className="text-muted-foreground font-normal">Stage</p><Badge variant="outline" className="mt-1">{selectedLead?.stage}</Badge></div>
+              <div><p className="text-muted-foreground font-normal">Value</p><p className="font-medium">${selectedLead?.value?.toLocaleString()}</p></div>
+            </div>
+            <div className="pt-4 border-t">
+              <p className="text-muted-foreground text-sm font-normal">Notes</p>
+              <p className="text-sm mt-1 bg-slate-50 p-3 rounded-md italic text-slate-700 leading-relaxed">
+                {selectedLead?.notes || "No additional notes available for this lead."}
+              </p>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

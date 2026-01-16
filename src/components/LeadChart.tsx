@@ -16,11 +16,11 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-// Yahan hum light aur pleasing colors define kar rahe hain
+
 const chartConfig = {
   value: {
     label: "Leads",
-    color: "#6366f1", // Indigo-500 (Professional Light Blue/Purple)
+    color: "#6366f1", 
   },
 } satisfies ChartConfig;
 
@@ -45,7 +45,6 @@ export default function LeadChart() {
             data={data} 
             margin={{ top: 20, right: 30, left: 0, bottom: 0 }}
           >
-            {/* Horizontal lines ko aur light kar diya */}
             <CartesianGrid vertical={false} stroke="#e2e8f0" strokeDasharray="4 4" />
             
             <XAxis
@@ -63,14 +62,14 @@ export default function LeadChart() {
             />
 
             <ChartTooltip 
-              cursor={{ fill: '#f1f5f9' }} // Hover karne par light gray background
+              cursor={{ fill: '#f1f5f9' }} 
               content={<ChartTooltipContent hideLabel />} 
             />
 
             <Bar 
               dataKey="value" 
               fill="var(--color-value)" 
-              radius={[6, 6, 0, 0]} // Round corners for soft look
+              radius={[6, 6, 0, 0]} 
               barSize={45}
             />
           </BarChart>
