@@ -21,21 +21,31 @@ Follow these steps to run the project locally:
 Install Dependencies:
 
 Bash
+
 npm install
+
 Configure Environment Variables: Create a .env.local file in the root directory and add:
 
 Code snippet
+
 MONGODB_URI=your_mongodb_connection_string
+
 Run the Application:
 
+
 Bash
+
 npm run dev
  
  Seeding Method
+
 To populate the dashboard with 500+ dummy leads for testing, run the custom seeding script:
 
+
 Bash
+
 npm run seed
+
 Note: Ensure your MONGODB_URI is correctly set before seeding.
 
 ##  Features
@@ -53,4 +63,5 @@ Styling: Tailwind CSS & Shadcn UI
 Database: MongoDB with Mongoose
 
 Charts: Recharts
+
 
